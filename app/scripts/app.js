@@ -15,12 +15,8 @@ app.run(function(editableOptions) {
 app.config(function ($routeProvider, $locationProvider) {
   $routeProvider
   .when('/', {
-    templateUrl: 'partials/plume',
-    controller: 'PlumeCtrl'
-  })
-  .when('/resistance', {
-    templateUrl: 'partials/res',
-    controller: 'ResCtrl'
+    templateUrl: 'partials/resistance',
+    controller: 'ResistanceCtrl'
   })
   .when('/plume', {
     templateUrl: 'partials/plume',
@@ -33,6 +29,10 @@ app.config(function ($routeProvider, $locationProvider) {
   .when('/register', {
     templateUrl: 'partials/register',
     controller: 'AuthCtrl'
+  })
+  .when('/resistance', {
+    templateUrl: 'partials/resistance',
+    controller: 'ResistanceCtrl'
   })
   .otherwise({
     redirectTo: '/'
