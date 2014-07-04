@@ -7,7 +7,7 @@ var app = angular.module('legendApp', [
   'ngSanitize',
   'ngRoute',
   'firebase',
-  'xeditable'
+  'xeditable',
   ]);
 app.run(function(editableOptions) {
   editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
@@ -17,6 +17,10 @@ app.config(function ($routeProvider, $locationProvider) {
   .when('/', {
     templateUrl: 'partials/plume',
     controller: 'PlumeCtrl'
+  })
+  .when('/resistance', {
+    templateUrl: 'partials/res',
+    controller: 'ResCtrl'
   })
   .when('/plume', {
     templateUrl: 'partials/plume',

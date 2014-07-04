@@ -8,7 +8,7 @@
 		</div>
 		<ul class="nav navbar-nav">           
 			<li ng-class="{ active: isSelected(1) }"><a href="#" ng-click="selectTab(1)">Profile</a></li>
-			<li ng-class="{ active: isSelected(2) }"><a href="#" ng-click="selectTab(2)">#</a></li>
+			<li ng-class="{ active: isSelected(2) }"><a href="#" ng-click="selectTab(2)">Routine</a></li>
 			<li ng-class="{ active: isSelected(3) }"><a href="#" ng-click="selectTab(3)">#</a></li>
 			<li ng-class="{ active: isSelected(4) }"><a href="#" ng-click="selectTab(4)">#</a></li>
 			<li ng-class="{ active: isSelected(5) }"><a href="#" ng-click="selectTab(5)">#</a></li>
@@ -24,7 +24,11 @@
 		Username: {{ currentUser.username || "empty" }}<br>
 		Height (inches): <span editable-number="currentUser.height" style="margin-left: 5px;" onshow="initUser()" onaftersave="updateUser()">{{ currentUser.height || "enter height in inches" }}</span><br>
 		Weight (lbs): <span editable-number="currentUser.weight" style="margin-left: 5px;" onshow="initUser()" onaftersave="updateUser()">{{ currentUser.weight || "enter weight in lbs" }}</span><br>
-		BMI: {{ currentUser.bmi || "enter height+weight to calculate" }}
+		BMI: {{ currentUser.bmi || "enter height+weight to calculate" }}<br>
+		According to your input, your BMI is {{ currentUser.bmiLevel || "empty" }}.
+	</div>
+	<div ng-show="isSelected(2) && signedIn()">
+		Let's set up a routine.
 	</div>
 	<div ng-hide="signedIn()">Please login. You can use test credentials: 
 		<blockquote>email: test@test.com, password: test</blockquote></div>

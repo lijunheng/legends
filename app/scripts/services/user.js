@@ -13,7 +13,8 @@ app.factory('User', function ($rootScope, $firebase, FIREBASE_URL) {
         $priority: authUser.uid,
         height: 0,
         weight: 0,
-        bmi: 0
+        bmi: 0,
+        bmiLevel: "empty"
       };
 
       console.log('step 4: saving username');
@@ -27,6 +28,7 @@ app.factory('User', function ($rootScope, $firebase, FIREBASE_URL) {
       users[username].height = $rootScope.currentUser.height;
       users[username].weight = $rootScope.currentUser.weight;
       users[username].bmi = $rootScope.currentUser.bmi;
+      users[username].bmiLevel = $rootScope.currentUser.bmiLevel;
       users.$save(username);
     },
     findByUsername: function (username) {
