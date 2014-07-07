@@ -1,6 +1,9 @@
 'use strict';
 
-app.controller('AuthCtrl', function ($scope, $location, Auth, User) {
+app.controller('AuthCtrl', function ($rootScope, $scope, $location, Auth, User) {
+
+  $scope.user = {username: '', email: '', password: ''};
+  
   if (Auth.signedIn()) {
     $location.path('/');
   }
@@ -23,7 +26,7 @@ app.controller('AuthCtrl', function ($scope, $location, Auth, User) {
     });
   }
   
-  $scope.register = function () {
+  $rootScope.register = function () {
     console.log('step 1: before register');
     Auth.register($scope.user).then(function (authUser) {
       console.log('step 3: creating user');

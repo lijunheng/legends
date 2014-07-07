@@ -1,15 +1,6 @@
 'use strict';
 
 app.controller('ResistanceCtrl', function ($rootScope, $scope, $location, Game, Auth, User) {
-	$scope.tab = 1;
-
-	$scope.selectTab = function(setTab) {
-		$scope.tab = setTab;
-	};
-	$scope.isSelected = function(checkTab) {
-		return $scope.tab === checkTab;
-	};
-
 	jQuery('#datetimepicker').datetimepicker();
 
 	$scope.games = Game.all;

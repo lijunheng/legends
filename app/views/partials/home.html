@@ -1,48 +1,5 @@
-<a href="#/login" ng-hide="signedIn()" class="btn btn-primary">Login</a>
-<a href="#/register" ng-hide="signedIn()" class="btn btn-primary">Register</a>
-<div style="display:inline" ng-hide="signedIn()">Login/register to use.</div>
-<a href="#" ng-click="logout()" ng-show="signedIn()" class="btn btn-primary">Logout</a>
-<div ng-show="signedIn()" style="display:inline">
-	|
-	<a href="#/users/{{ currentUser.username }}">
-		<img ng-src="http://www.gravatar.com/avatar/{{ currentUser.md5_hash }}" width="50px" height="50px" class="nav-pic" />
-	</a>
-	<a href="#/users/{{ currentUser.username }}">{{ currentUser.username }}</a>
+<div ng-hide="signedIn()">Please login. You can use test credentials: 
+	<blockquote>
+		email: test@test.com, password: test
+	</blockquote>
 </div>
-<hr>
-<h3>Carsharing (<a href="http://www.ideaswatch.com/startup-idea/car-sharing-realtime-mobile-app" target="_blank">the idea</a>)</h3>
-
-View current add:
-
-Start: {{ request.start }} | End: {{ request.end }} | Departure time: {{ request.time }} | Seats available: {{ request.seats }} | Driver: <div style="display:inline" ng-show="request.driving">{{ request.driver }}</div><div style="display:inline" ng-hide="request.driving">none</div>
-
-<form ng-submit="submitRequest()" ng-show="signedIn()">
-	<input type="text" placeholder="start location" ng-model="request.start" />
-	<input type="text" placeholder="end location" ng-model="request.end" />
-	<input type="text" placeholder="departure time" ng-model="request.time" />
-	<input type="text" placeholder="seats available" ng-model="request.seats" />
-	<input type="checkbox" ng-model="request.driving" ng-click="setDriver()">Driver</input>
-	<input type="submit" class="btn btn-primary" value="Add Request" />
-</form>
-<br>
-
-<div ng-repeat="(requestId, request) in requests">
-	{{ $index+1 }} // Start: {{ request.start }} | End: {{ request.end }} | Departure time: {{ request.time }} | Seats available: {{ request.seats }} | Driver: {{ request.driver }} <span>— submitted by <a href="#/users/{{ request.owner }}">{{ request.owner }}</a></span>
-	<a ng-click="deleteRequest(requestId)" ng-show="signedIn() && request.owner === currentUser.username">(delete)</a>
-	<div ng-repeat="(riderId, rider) in request.riders">
-		-with rider: <a href="#/users/{{ rider.username }}">{{ rider.username }}</a>
-		<a ng-click="removeRider(requestId, rider, riderId)" ng-show="signedIn() && rider.username === currentUser.username">(remove rider)</a>
-	</div>
-	<form ng-show="signedIn()">
-      <input type="submit" ng-click="addRider(requestId)" value="Add Rider" class="btn btn-primary" />
-    </form>
-</div>
-
-<hr>
-<h3>Running Patterns</h3>
-<blockquote> I want to establish a running pattern but don't know where to run outside. We can make an app that takes in however much we want to run and find a bunch of tracks that are sidewalk friendly!</blockquote>
-<form ng-submit="submitRequest()" ng-show="signedIn()">
-	<input type="text" placeholder="start location" ng-model="runner.start" />
-	<input type="text" placeholder="distance" ng-model="runner.distance" />
-	<input type="submit" class="btn btn-primary" value="Submit" />
-</form>

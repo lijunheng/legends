@@ -29,6 +29,8 @@
       <![endif]-->
 
       <!-- Add your site or application content here -->
+      <div ng-include="'partials/nav.html'"></div>
+      <div ng-include="'partials/logged_out.html'"></div>
       <div class="container" ng-view=""></div>
 
       <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -63,18 +65,21 @@
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/jquery.datetimepicker.js"></script>
+    <script src="scripts/xeditable.js"></script>
     <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/nav.js"></script>
     <script src="scripts/controllers/trans.js"></script>
     <script src="scripts/controllers/plume.js"></script>
-    <script src="scripts/controllers/res.js"></script>
+    <script src="scripts/controllers/auth.js"></script>
+    <script src="scripts/controllers/resistance.js"></script>
+    <script src="scripts/controllers/div.js"></script>
+    <script src="scripts/controllers/stroop.js"></script>
+    <script src="scripts/controllers/stroop_exp.js"></script>
     <script src="scripts/services/request.js"></script>
     <script src="scripts/services/game.js"></script>
-    <script src="scripts/controllers/auth.js"></script>
     <script src="scripts/services/auth.js"></script>
     <script src="scripts/services/user.js"></script>
-    <script src="scripts/xeditable.js"></script>
-    <script src="scripts/jquery.datetimepicker.js"></script>
-    <script src="scripts/controllers/resistance.js"></script>
     <!-- endbuild -->
   </body>
   </html>

@@ -1,3 +1,83 @@
 body {
   padding-top: 70px;
 }
+
+#psych {
+	font-size: 100%;
+}
+
+#indicator {
+  position: absolute;
+}
+
+#cue {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 60%;
+  height: 60px;
+  width: 60px;
+}
+
+#startExpButton {
+  display: block;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+}
+
+#startRunButton {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+#endExpButton {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+#startPracButton {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+#pracAgainButton {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+#indicator {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+#wordIndicator {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 60%;
+}
+
+#colorIndicator {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 60%;
+}
+
+#feedback {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 60%;
+}

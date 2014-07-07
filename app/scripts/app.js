@@ -18,10 +18,6 @@ app.config(function ($routeProvider, $locationProvider) {
     templateUrl: 'partials/resistance',
     controller: 'ResistanceCtrl'
   })
-  .when('/plume', {
-    templateUrl: 'partials/plume',
-    controller: 'PlumeCtrl'
-  })
   .when('/login', {
     templateUrl: 'partials/login',
     controller: 'AuthCtrl'
@@ -30,9 +26,25 @@ app.config(function ($routeProvider, $locationProvider) {
     templateUrl: 'partials/register',
     controller: 'AuthCtrl'
   })
-  .when('/resistance', {
-    templateUrl: 'partials/resistance',
-    controller: 'ResistanceCtrl'
+  .when('/diversity', {
+    templateUrl: 'partials/div',
+    controller: 'DivCtrl'
+  })
+  .when('/stroop', {
+    templateUrl: 'partials/stroop',
+    controller: 'StroopCtrl'
+  })
+  .when('/stroop/experiment', {
+    templateUrl: 'partials/stroopExperiment',
+    controller: 'StroopExpCtrl'
+  })
+  .when('/psych', {
+    templateUrl: 'partials/psych',
+    controller: 'PsychCtrl'
+  })
+  .when('/plume', {
+    templateUrl: 'partials/plume',
+    controller: 'PlumeCtrl'
   })
   .otherwise({
     redirectTo: '/'
@@ -40,3 +52,11 @@ app.config(function ($routeProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
 });
 app.constant('FIREBASE_URL', 'https://legends.firebaseio.com/');
+app.directive('datetimepicker', function(){
+  return {
+    restrict: 'A',
+    link: function ($scope, $elem, attrs) {
+      $elem.datetimepicker();
+    }
+  };
+});

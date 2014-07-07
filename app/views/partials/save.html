@@ -1,0 +1,12 @@
+<div ng-include="'views/partials/nav.html'"></div>
+<div class="container">
+	<div ng-controller="AuthCtrl">
+		<div ng-include="'views/partials/login.html'"></div>
+		<div ng-include="'views/partials/register.html'"></div>
+	</div>
+	<div ng-hide="signedIn()">Please login. You can use test credentials: 
+		<blockquote>
+			email: test@test.com, password: test
+		</blockquote>
+	</div>
+</div>

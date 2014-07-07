@@ -9,6 +9,7 @@ app.factory('Auth',
     var Auth = {
       register: function (user) {
         console.log('step 2: registering');
+        console.log(user);
         return auth.$createUser(user.email, user.password);
       },
       signedIn: function () {

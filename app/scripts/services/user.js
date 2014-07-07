@@ -29,6 +29,7 @@ app.factory('User', function ($rootScope, $firebase, FIREBASE_URL) {
       users[username].weight = $rootScope.currentUser.weight;
       users[username].bmi = $rootScope.currentUser.bmi;
       users[username].bmiLevel = $rootScope.currentUser.bmiLevel;
+      users[username].data = $rootScope.currentUser.data;
       users.$save(username);
     },
     findByUsername: function (username) {
