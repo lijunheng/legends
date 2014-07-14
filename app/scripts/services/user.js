@@ -30,7 +30,21 @@ app.factory('User', function ($rootScope, $firebase, FIREBASE_URL) {
       users[username].bmi = $rootScope.currentUser.bmi;
       users[username].bmiLevel = $rootScope.currentUser.bmiLevel;
       users[username].data = $rootScope.currentUser.data;
+      users[username].dataTime = $rootScope.currentUser.dataTime;
+      users[username].incongruencyEffect = $rootScope.currentUser.incongruencyEffect;
+      users[username].dataAverage = $rootScope.currentUser.dataAverage;
       users.$save(username);
+    },
+    submitExperiment: function (experiment) {
+      if (User.signedIn()) {
+        var user = User.getCurrent().$child('experiments');
+        user[experiment.name] = {
+          name: experiment.name,
+          data: experiment.data,
+          last_updated: experiment.last_updated
+        };
+        user.$save(experiment.name);
+      }
     },
     findByUsername: function (username) {
       if (username) {
@@ -42,6 +56,21 @@ app.factory('User', function ($rootScope, $firebase, FIREBASE_URL) {
     },
     signedIn: function () {
       return $rootScope.currentUser !== undefined;
+    },
+    getAvg: function () {
+      var keys = users.$getIndex();
+      console.log(keys);
+      var incongruencyTotal = 0;
+      var length = 0;
+      for (var i = 0; i < keys.length; i++) {
+        if (users[keys[i]].incongruencyEffect) {
+          console.log(keys[i] + 'incongruencyEffect: ' + users[keys[i]].incongruencyEffect);
+          incongruencyTotal = incongruencyTotal + users[keys[i]].incongruencyEffect;
+          length++;
+        }
+      }
+      var avg = incongruencyTotal / length;
+      return avg;
     }
   };
 

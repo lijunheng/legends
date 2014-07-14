@@ -1,15 +1,21 @@
+<style>
+	body {
+		background-color: #404040;
+	}
+</style>
+
 <table id="wrapper">
-		<tr>
-			<td>
-				<img id="cue" src="images/star.png"/>
-				<div id="feedback" style="font-family:arial;color:black;font-size:36px;"></div>
-				<canvas id="colorIndicator" width="200" height="65"></canvas>
-				<div id="indicator" style="font-family:arial;color:black;font-size:36px;z-index:0;">+</div>
-				<div id="wordIndicator" style="font-family:arial;font-weight:bolder;color:black;font-size:54px;z-index:1;"></div>
-				<p id="Initialization" style="font-family:arial;color:black;font-size:48px;"></p>
-				<button id="startExpButton" class="btn btn-primary" style="font-family:arial;color:white;font-size:24px;">Click this button to start the experiment.</button>
-				<button id="startRunButton" class="btn btn-primary" style="font-family:arial;color:white;font-size:24px;">End of run. Click this button to start the next run.</button>
-				<button id="endExpButton" class="btn btn-primary" style="font-family:arial;color:white;font-size:24px;" ng-click="updateValue()">End of experiment. Click to return.</button>
-			</td>
-		</tr>
-	</table>
+	<tr>
+		<td>
+			<img id="cue" src="images/star.png"/>
+			<div id="feedback" style="font-family:arial;color:white;font-size:36px;"></div>
+			<canvas id="colorIndicator" width="200" height="65"></canvas>
+			<div id="indicator" style="font-family:arial;color:white;font-size:36px;z-index:0;">+</div>
+			<div id="wordIndicator" style="font-family:arial;font-weight:bolder;color:white;font-size:54px;z-index:1;"></div>
+			<p id="Initialization" style="font-family:arial;color:white;font-size:48px;"></p>
+			<button id="startExpButton" class="btn btn-primary" style="font-family:arial;color:white;font-size:24px;">Click this button to start the experiment.</button>
+			<button id="startRunButton" class="btn btn-primary" style="font-family:arial;color:white;font-size:24px;">End of run. Click this button to start the next run.</button>
+			<button id="endExpButton" class="btn btn-primary" style="font-family:arial;color:white;font-size:24px;" ng-click="submitExperiment()">End of experiment. Click to return.</button>
+		</td>
+	</tr>
+</table>

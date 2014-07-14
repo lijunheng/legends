@@ -15,8 +15,12 @@ app.run(function(editableOptions) {
 app.config(function ($routeProvider, $locationProvider) {
   $routeProvider
   .when('/', {
-    templateUrl: 'partials/resistance',
-    controller: 'ResistanceCtrl'
+    templateUrl: 'partials/home',
+    controller: 'HomeCtrl'
+  })
+  .when('/users/:username', {
+    templateUrl: 'partials/profile.html',
+    controller: 'ProfileCtrl'
   })
   .when('/login', {
     templateUrl: 'partials/login',
@@ -25,26 +29,6 @@ app.config(function ($routeProvider, $locationProvider) {
   .when('/register', {
     templateUrl: 'partials/register',
     controller: 'AuthCtrl'
-  })
-  .when('/diversity', {
-    templateUrl: 'partials/div',
-    controller: 'DivCtrl'
-  })
-  .when('/stroop', {
-    templateUrl: 'partials/stroop',
-    controller: 'StroopCtrl'
-  })
-  .when('/stroop/experiment', {
-    templateUrl: 'partials/stroopExperiment',
-    controller: 'StroopExpCtrl'
-  })
-  .when('/psych', {
-    templateUrl: 'partials/psych',
-    controller: 'PsychCtrl'
-  })
-  .when('/plume', {
-    templateUrl: 'partials/plume',
-    controller: 'PlumeCtrl'
   })
   .otherwise({
     redirectTo: '/'

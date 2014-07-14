@@ -1,22 +1,38 @@
-<div class="container bs-docs-container">
+<div class="container bs-docs-container" ng-show="signedIn()">
 	<div class="row">
 		<h1>Stroop Test</h1>
 		<hr/>
 		<p>In this experiment, we are interested in the effect of reward on conflict resolution. You will be presented with a word (either 'BLUE' or 'PINK') in either blue or pink text color. Your task to indicate the 
-				<b>color of the text</b> ('z' key of the text is blue, 'x' key if the text is pink), not the color indicated by the text. </p>
+			<b>color of the text</b> ('p' key if the text is pink, 'b' key if the text is blue), not the color indicated by the text. </p>
 
-				<center style="margin-top:20px;margin-bottom:20px;">
-					<img ng-src="/images/i3.png" height="150"/>
-					<img ng-src="/images/i4.png" height="150"/>
-				</center>
+			<center style="margin-top:20px;margin-bottom:20px;">
+				<img ng-src="/images/i3.png" height="150"/>
+				<img ng-src="/images/i4.png" height="150"/>
+			</center>
 
-				<p>You will also get points depending on whether the trial is high reward (star) or low reward (circle). The reward is cued before each trial. The experiment will last about 1 minute.</p>
-							Your current data: {{ currentUser.data }}
+			<p>You will also get points depending on whether the trial is high reward (star) or low reward (circle). The reward is cued before each trial. The experiment will last about 1 minute.</p>
 
-							<center>
-								<a style="font-family:arial;color:white;font-size:20px;" class="btn btn-lg btn-primary" href="/stroop/experiment">Click to begin.
-								</a>
-							</center>
-						</div>
-					</div>
-				</div>
+			<hr>
+
+			<div class="dataBox" id="dataAnalysis">
+				<h3>Data Analysis</h3>
+				<button ng-click="analyzeData()" ng-hide="analyzeDataClicked" class="btn btn-primary">Analyze Data</button>
+				<button ng-click="compareData()" ng-show="incongruencyEffect" ng-hide="compareDataClicked" class="btn btn-primary">Compare Data</button>
+				<p>
+					Last updated: {{ currentUser.experiments.Stroop.last_updated }}
+				</p>
+				<p>
+					Incongruency effect: {{ incongruencyEffect }} <span ng-show="compareDataClicked">(average: {{ incongruencyAvg }})
+				</p>
+				<p>
+					Average reaction time: {{ dataAverage }}
+				</p>
+			</div>
+
+			<center>
+				<a style="font-family:arial;color:white;font-size:20px;" class="btn btn-lg btn-primary" href="/stroop/experiment">Click to begin.
+				</a>
+			</center>
+		</div>
+	</div>
+</div>

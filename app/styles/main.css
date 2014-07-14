@@ -2,6 +2,10 @@ body {
   padding-top: 70px;
 }
 
+.dataBox {
+  margin-bottom: 15px;
+}
+
 #psych {
 	font-size: 100%;
 }

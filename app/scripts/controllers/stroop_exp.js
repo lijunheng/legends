@@ -1,22 +1,22 @@
 'use strict';
 
-app.controller('StroopExpCtrl', function ($rootScope, $scope, $location, Game, Auth, User) {
-	$scope.hello = { data: 'hello '};
+app.controller('StroopExpCtrl', function ($rootScope, $scope, $location, Auth, User) {
+	$scope.experiment = {name: '', data: '', last_updated: ''};
 
-	$scope.updateValue = function () {
-		$scope.hello = { data: data.join(";")};
-		$rootScope.currentUser.data = data.join(";");
-		User.update($rootScope.currentUser.username);
-		$location.path('/diversity');
+	$scope.submitExperiment = function () {
+		$scope.experiment.name = "Stroop";
+		$scope.experiment.data = data.join(";");
+		$scope.experiment.last_updated = new Date();
+		User.submitExperiment($scope.experiment);
+		$location.path('/stroop');
 	};
 
-	var trialNum = 10; // Number of trials in each run.
+	var trialNum = 1; // Number of trials in each run.
 		var trialId = 0; // The current trial in the run; start at 0.
 		var runNum = 1; // How many runs are in each block. There are three blocks in total (only two are affected by runNum as the first is the practice block)
 		var runId = 1; // The current run in the block; start at 1.
 		var blockId = 3; // The current block; start at 1. The first block only has #practiceLength trials, and is the practice block.
 		var practiceLength = 2; // How long you want to collect data to find the baseline reaction time
-		var rewardPresentInterval = 10; // Every x trials, the total reward so far will be presented
 
 		function reposition(param) { // every time an element changes size, you must reposition it
 			var Element = document.getElementById(""+param);
@@ -184,9 +184,9 @@ app.controller('StroopExpCtrl', function ($rootScope, $scope, $location, Game, A
 
 		// do another countdown after the run starts
 		$("#startRunButton").click(function(){
-		    $("#startRunButton").hide();
-		    countdown(5);
-    	});
+			$("#startRunButton").hide();
+			countdown(5);
+		});
 		
 		// show the cue
 		function showCue() {
@@ -216,13 +216,13 @@ app.controller('StroopExpCtrl', function ($rootScope, $scope, $location, Game, A
 			if (stimColor == 0) {
 				switch(blockId) // block 1 and 2 are non-integrated, so the background rectangle is filled in with color. block 3 is integrated, so the font color of the text is changed
 				{
-				case 1: 
+					case 1: 
 					ColorInd.fillStyle = color1;
 					break;
-				case 2:
+					case 2:
 					ColorInd.fillStyle = color1;
 					break;
-				case 3:
+					case 3:
 					WordInd.style.color = color1;
 					break;
 				}
@@ -230,13 +230,13 @@ app.controller('StroopExpCtrl', function ($rootScope, $scope, $location, Game, A
 			} else {
 				switch(blockId)
 				{
-				case 1: 
+					case 1: 
 					ColorInd.fillStyle = color2;
 					break;
-				case 2:
+					case 2:
 					ColorInd.fillStyle = color2;
 					break;
-				case 3:
+					case 3:
 					WordInd.style.color = color2;
 					break;
 				}
@@ -271,11 +271,7 @@ app.controller('StroopExpCtrl', function ($rootScope, $scope, $location, Game, A
 			console.log(text);
 			// text format: [blockId]-[runId]-[trialId]-[reward?]-[text color]-[stimulus color]-[response]-[correct?]-[reaction time]
 			data.push(text); 
-			if ((trialId) % rewardPresentInterval == 0 && blockId != 1) {
-				setTimeout(presentReward, feedbackTime);
-			} else {
-				setTimeout(showFix2, feedbackTime);
-			}
+			setTimeout(showFix2, feedbackTime);
 		}
 		
 		function showFix2() {
@@ -293,14 +289,14 @@ app.controller('StroopExpCtrl', function ($rootScope, $scope, $location, Game, A
 		} 
 		
 		$("#endExpButton").click(function(){
-    	});
+		});
 
 		function isCorrect(response){ 
-			if (stimColor == 0 && response == 'z') {
+			if (stimColor == 0 && response == 'b') {
 				accuracy = "Y";
 				$("#feedback").text("Correct");
 			}
-			else if (stimColor == 1 && response == 'x') {
+			else if (stimColor == 1 && response == 'p') {
 				accuracy = "Y";
 				$("#feedback").text("Correct");
 			}
@@ -312,23 +308,23 @@ app.controller('StroopExpCtrl', function ($rootScope, $scope, $location, Game, A
 		}
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ keypress handler ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	
-		$("body").keypress(function(event){
-			if (hasResponse == 3) {
-				sectionReward = 0;
-				showFix2();
-				hasResponse = 1;
-			}
-			if (hasResponse == 0) {
-				ans = String.fromCharCode(event.which);
-				ans = ans.toLowerCase();
-				hasResponse = 1;
-  		        d2 = new Date();
-				reactionTime = d2.getTime() - d1.getTime();
-				trialReward = Math.round(baselineRT+200-reactionTime);
-				if (reward == 1) {
-					trialReward = trialReward * 10;
-				}
+
+$("body").keypress(function(event){
+	if (hasResponse == 3) {
+		sectionReward = 0;
+		showFix2();
+		hasResponse = 1;
+	}
+	if (hasResponse == 0) {
+		ans = String.fromCharCode(event.which);
+		ans = ans.toLowerCase();
+		hasResponse = 1;
+		d2 = new Date();
+		reactionTime = d2.getTime() - d1.getTime();
+		trialReward = Math.round(baselineRT+200-reactionTime);
+		if (reward == 1) {
+			trialReward = trialReward * 10;
+		}
 				if (trialReward < 0) { // there is a small chance of getting negative reward if your response is slower than your baseline + 200 ms, so when that happens, just set the trial reward to 0
 					trialReward = 0;
 				}
